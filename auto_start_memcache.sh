@@ -6,11 +6,16 @@
 #Version:1.0
 
 TIME=$(date +20%y-%m-%d_%H%M%S)
+
+MEMCACHED=`which memcached`
+
 LOG=/home/hugo/scripts/logs/monitor_memcache.log
+
 ps -ef|grep memcache|grep -v grep|wc -l > /home/hugo/scripts/memcache_process
 netstat -lnpt|grep 11211|wc -l > /home/hugo/scripts/memcache_port_numbers
 MEMCACHE_PROSS=`cat /home/hugo/scripts/memcache_process`
 MEMCACHE_PORT=`cat /home/hugo/scripts/memcache_port_numbers`
+
 
 function start_memcache(){
 	if [[ ${MEMCACHE_PROSS} -ge 1 ]];then
@@ -20,12 +25,12 @@ function start_memcache(){
 		else
 			echo "===================================">> ${LOG}
 			echo "${TIME} memcache port is not listening, and will try to restart the memcache..." >> ${LOG}
-			/usr/local/bin/memcached –d –l 172.16.115.121 –p 11211 –u root –m 64 –c 1024 -P /home/hugo/memcached.pid
+			${MEMCACHED} –d –l 172.16.115.121 –p 11211 –u root –m 64 –c 1024 -P /home/hugo/memcached.pid
 		fi
 	else
 		echo "===================================" >> ${LOG}
 		echo "${TIME} memcache process are not running" >> ${LOG}
-	        /usr/local/bin/memcached –d –l 172.16.115.121 –p 11211 –u root –m 64 –c 1024 -P /home/hugo/memcached.pid
+	        ${MEMCACHED} –d –l 172.16.115.121 –p 11211 –u root –m 64 –c 1024 -P /home/hugo/memcached.pid
 	fi
 }
 
