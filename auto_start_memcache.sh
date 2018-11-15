@@ -17,6 +17,8 @@ MEMCACHE_PROSS=`cat /home/hugo/scripts/memcache_process`
 MEMCACHE_PORT=`cat /home/hugo/scripts/memcache_port_numbers`
 
 
+
+
 function start_memcache(){
 	if [[ ${MEMCACHE_PROSS} -ge 1 ]];then
 		if [[ $MEMCACHE_PORT -ge 2 ]];then
