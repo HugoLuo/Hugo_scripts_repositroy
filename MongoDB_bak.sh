@@ -38,3 +38,6 @@ function bak_db(){
  else
  	bak_db
  fi
+
+
+
