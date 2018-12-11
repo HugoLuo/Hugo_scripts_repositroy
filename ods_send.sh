@@ -2,7 +2,7 @@
 
 #Description:this script is for upload file to te CD Server via CDSend command
 #Author:Hugo Luo
-#Date:2018-11-20
+#Date:2018-11-20  
 #Version:1.0
 
 source /etc/profile
