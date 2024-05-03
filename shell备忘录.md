@@ -34,6 +34,10 @@ rpm -qc bash #查看配置文件
 	echo ${#singer[@]}
 	echo ${!singer[@]}
 
+使用关联数据统计TCP连接的状态：
+#1
+netstat -nat|awk '/^tcp/ {++arr[$NF]};END {for(k in arr) print k,"\t",arr[k]}' 
+
 
 
 keyword:  脚本中向指定文件写入内容
@@ -42,6 +46,33 @@ keyword:  脚本中向指定文件写入内容
 cat > 20240428.txt <<EOF
 Hello,world! 20240428
 EOF
+
+一些经典的用法：
+https://blog.csdn.net/m0_52165864/article/details/126291551
+1.统计http status:
+cat access.log|awk '{count[$(9)]+=1};END {for (code in count) print code,counts[code]}'
+cat access.log|awk '{print $9}'|sort|uniq -c|sort -rn
+2.统计404
+awk '($9~/404/)' access.log |awk '{print $9,$7}'|sort
+3.网站日志分析（nginx日志）
+  3.1 获取访问前10的IP地址
+  	sort -k2 -nr ## -k2 按照第二排进行排序;-nr 将按数字进行倒序（反向）排序。
+  	uniq -c ## -c是count,检查文件过滤掉重复的行，并在行首显示重复出现的次数
+  cat access.log|awk '{print $1}'|sort|uniq -c |sort -nr|head -10
+  	grep -v '^$' #去除空行
+  3.2 获取前20访问次数最多的页面或文件 ，及访问IP
+  cat access.log|awk '{print $11}'|sort|uniq -c|sort -nr|head -20
+ 4.用tcpdump 嗅探80端口的访问
+  tcpdump -i ens33 dst port 80 -c 1000|awk -F"." '{print $1,$2,$3,$4}'|sort|uniq -c|sort -nr|head -20
+ 5.根据端口列线程
+  netstat -lnpt|grep 80|awk '{print $7}'|cut -d/ -f1
+ 5.查找较多time_wait 连接
+  netstat -n|grep TIME_WAIT|sort|uniq -c|sort -nr|head -20
+
+  vnc是什么？
+
+  建虚拟环境-->建项目-->建APP
+  mkvirtualen GP1 -p /usr/local/bin/python3 -->django-admin startproject django_project --> django-admin startapp App
 
 
 
