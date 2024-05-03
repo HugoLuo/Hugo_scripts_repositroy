@@ -1,14 +1,6 @@
 ## <center>Shell工作备忘录</center>
 
-
-
-
-
-
-
-
 - 1.read函数
-
 
  -p:指定读取时的提示符<p/>
  -t:指定读取时等待的时间（以秒为单位）</p>
@@ -18,9 +10,7 @@ read -p "Please enter your name:" -t 10 var_name
 read -p "Please enter your password:" -s var_passwd
 ```
 
-
 - 2.也用于在while循环时设置断点
-
 
 rpm 
 
