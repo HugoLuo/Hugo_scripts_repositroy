@@ -61,7 +61,7 @@ Hello,world! 20240428
 EOF
 ```
 一些经典的用法：
-* []https://blog.csdn.net/m0_52165864/article/details/126291551
+* [信息来源](https://blog.csdn.net/m0_52165864/article/details/126291551) </p>
 1.统计http status:
 ```
 cat access.log|awk '{count[$(9)]+=1};END {for (code in count) print code,counts[code]}'
@@ -72,7 +72,7 @@ cat access.log|awk '{print $9}'|sort|uniq -c|sort -rn
 awk '($9~/404/)' access.log |awk '{print $9,$7}'|sort
 ```
 3.网站日志分析（nginx日志）
- - 3.1 获取访问前10的IP地址
+ - 3.1 获取访问前10的IP地址 <br>
   	sort -k2 -nr ## -k2 按照第二排进行排序;-nr 将按数字进行倒序（反向）排序。</p>
   	uniq -c ## -c是count,检查文件过滤掉重复的行，并在行首显示重复出现的次数 </p>
 ```
