@@ -97,6 +97,7 @@ netstat -n|grep TIME_WAIT|sort|uniq -c|sort -nr|head -20
 ```
 
 7. xargs的使用
+https://blog.csdn.net/m0_61066945/article/details/126823524
 xargs -I 指定占位符  xargs -I {}
 xargs -d 指定分隔符	xargs -d #
 xargs -n 指定每次传递给命令的参数个数
