@@ -96,6 +96,23 @@ awk '($9~/404/)' access.log |awk '{print $9,$7}'|sort
 netstat -n|grep TIME_WAIT|sort|uniq -c|sort -nr|head -20
 ```
 
+7. xargs的使用
+```
+find . -name "*.sb3"|xargs -I{} mv {} ./机器人编程/
+ls|xargs -I{}  mv {} {}.bak
+```
+sh -c 'echo $0' aa bb 
+
+sh -c 'echo $1' aa bb
+
+str=bb.bak
+
+echo ${str}
+
+echo ${str%.bak}
+```
+ls|xargs -I{} sh -c 'mv $0 ${$0%.bak}' {}
+```
 
 
 
