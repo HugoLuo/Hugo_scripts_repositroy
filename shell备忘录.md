@@ -1,6 +1,14 @@
 ## <center>Shell工作备忘录</center>
 
+
+
+
+
+
+
+
 - 1.read函数
+
 
  -p:指定读取时的提示符<p/>
  -t:指定读取时等待的时间（以秒为单位）</p>
@@ -10,7 +18,9 @@ read -p "Please enter your name:" -t 10 var_name
 read -p "Please enter your password:" -s var_passwd
 ```
 
+
 - 2.也用于在while循环时设置断点
+
 
 rpm 
 
@@ -87,6 +97,13 @@ netstat -n|grep TIME_WAIT|sort|uniq -c|sort -nr|head -20
 ```
 
 7. xargs的使用
+xargs -I 指定占位符  xargs -I {}
+xargs -d 指定分隔符	xargs -d #
+xargs -n 指定每次传递给命令的参数个数
+xargs -p prompt执行命令之前打印完整命令并询问是否执行
+xargs -t 执行命令之前先打印完整的命令
+xargs -r no run if empty,如果传下来的参数为空，不执行后面的命令。
+
 ```
 find . -name "*.sb3"|xargs -I{} mv {} ./机器人编程/
 ls|xargs -I{}  mv {} {}.bak
@@ -108,4 +125,4 @@ ls|xargs -I{} sh -c 'mv $0 ${$0%.bak}' {}
 
 
 
-  
+
