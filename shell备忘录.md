@@ -98,12 +98,18 @@ netstat -n|grep TIME_WAIT|sort|uniq -c|sort -nr|head -20
 
 7. xargs的使用
 https://blog.csdn.net/m0_61066945/article/details/126823524
-xargs -I 指定占位符  xargs -I {}
+xargs -I 指定占位符  xargs -I {}.    {} 表示标准输入的值（需要参数-i指定）seq 3|xargs -i echo "file{}.log"
+
 xargs -d 指定分隔符	xargs -d #
+
 xargs -n 指定每次传递给命令的参数个数
+
 xargs -p prompt执行命令之前打印完整命令并询问是否执行
+
 xargs -t 执行命令之前先打印完整的命令
+
 xargs -r no run if empty,如果传下来的参数为空，不执行后面的命令。
+
 
 ```
 find . -name "*.sb3"|xargs -I{} mv {} ./机器人编程/
@@ -123,6 +129,12 @@ ls|xargs -I{} sh -c 'mv $0 ${$0%.bak}' {}
 ```
 
 
+Risk about cat command
+```
+echo -e '#!/bin/bash\necho "Hello ,world"\n\033[8m #this line is hidden' >script.sh
+cat script.sh
+cat -vet script.sh   
+``
 
 
 
